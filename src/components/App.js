@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       opened: false
     }
@@ -28,16 +29,18 @@ class App extends Component {
             <span onClick={this.toggleCart} style={{position:'absolute', left: '0px', top: '50%', cursor: 'pointer'}}>{opened ? '>>' : '<<'}</span>
           </aside>
           <header>
-              <button onClick={this.toggleCart}>Shopping Cart</button>
+              <span></span>
+              <span>Mini Mart</span>
+              <button className="button" onClick={this.toggleCart}>Cart</button>
           </header>
-          <main>
-            <nav>nav</nav>
-            <article>article</article>
-          </main>
-          <footer>footer</footer>
+          {this.props.children}
         </div>
     );
   }
+}
+
+App.propTypes = {
+  children: PropTypes.node
 }
 
 export default App;
