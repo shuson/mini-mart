@@ -25,9 +25,6 @@ class App extends Component {
     return (
         <div className="App">
           <div className="overlay" style={ opened? {display: 'block'} : {display: 'none'}}></div>
-          <aside className={opened ? "slideOn" : "slideOff"}>
-            <span onClick={this.toggleCart} style={{position:'absolute', left: '0px', top: '50%', cursor: 'pointer'}}>{opened ? '>>' : '<<'}</span>
-          </aside>
           <header>
               <span></span>
               <span>Mini Mart</span>

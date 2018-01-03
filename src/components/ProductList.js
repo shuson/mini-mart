@@ -8,27 +8,60 @@ class ProductList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            filters: []
+            filters: {}
         }
 
         this.onFilterChange = this.onFilterChange.bind(this)
+        this.filterValidate = this.filterValidate.bind(this)
     }
 
     onFilterChange(e) {
         let existintFilters = this.state.filters;
-        let val = e.target.value;
-        let existedIndex = this.state.filters.indexOf(val);
-        if(existedIndex > -1) {
-            existintFilters.splice(existedIndex, 1)
+
+        let filterName = e.target.name;
+        let filterVal = e.target.value;
+
+        let filterVals = existintFilters[filterName] || [];
+        if(filterVals.length > 0) {
+            let existedIndex = existintFilters[filterName].indexOf(filterVal);
+            if(existedIndex > -1) {
+                filterVals.splice(existedIndex, 1);
+            } else {
+                filterVals.push(filterVal)
+            }
         } else {
-            existintFilters.push(val)
+            filterVals.push(filterVal)
+            existintFilters[filterName] = filterVals
         }
 
         this.setState({
             filters: existintFilters
         })
+    }
 
-        console.log(this.state)
+    filterValidate(product) {
+        let filters = this.state.filters;
+        let filterKeys = Object.keys(filters);
+        if(filterKeys.length === 0) return true;
+        
+        let brands = filters.brand || [];
+        let prices = filters.price || [];
+
+        let brandFlag = true;
+        let priceFlag = prices.length == 0;
+
+        if(brands.length > 0 && brands.indexOf(product.brand) < 0) {
+            brandFlag = false
+        }
+        
+        for(let j = 0; j < prices.length; j++) {
+            let priceRange = prices[j].split("-")
+            if(product.price > Number(priceRange[0]) && product.price < Number(priceRange[1])) {
+                priceFlag = true;
+            }
+        }
+
+        return brandFlag && priceFlag
     }
 
     render() {
@@ -40,6 +73,8 @@ class ProductList extends Component {
             </nav>
             <article>
                 {data.products.map((product, index) => {
+                    if(!this.filterValidate(product)) return;
+
                     let lastDotIndex = product.image.lastIndexOf(".");
                     let productId = product.image.substr(0, lastDotIndex);
                     return <section key={index}>

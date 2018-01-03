@@ -25,6 +25,10 @@ main>article {
     text-align: center;
 }
 
+img {
+    margin-top: 5px;
+}
+
 main>nav {
     margin: 4px;
     padding: 10px;
@@ -58,10 +62,11 @@ section {
     text-decoration: none;
     display: inline-block;
     font-size: 14px;
-    height: 70%;
+    height: 40px;
     width: 40%;
     margin: 10px auto;
     cursor: pointer;
+    align-self: flex-end;
 }
 
 .filterLabel {
