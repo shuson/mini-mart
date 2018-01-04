@@ -8,6 +8,7 @@ import {
 import App from './App'
 import ProductList from './ProductList'
 import ProductDetail from './ProductDetail'
+import Cart from './Cart'
 
 const RootRouter = (props) => {
     return (
@@ -16,6 +17,7 @@ const RootRouter = (props) => {
                 <Switch>
                     <Route exact path="/" component={ProductList} />
                     <Route path="/product/:id" component={ProductDetail} />
+                    <Route path="/cart" component={Cart} />
                     <Route path="*" component={ProductList} />
                 </Switch>
             </App>

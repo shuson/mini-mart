@@ -9,6 +9,7 @@ main {
     position: relative;
     overflow: hidden;
 }
+
 main>article {
     margin: 4px;
     padding: 5px;
@@ -51,6 +52,14 @@ section {
     display: flex;
     flex-direction: column;
     align-content: center;
+}
+
+.productName {
+    font-size: 18px;
+}
+
+.productPrice {
+    font-size: 16px;
 }
 
 .addToCart {

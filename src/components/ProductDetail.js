@@ -1,15 +1,46 @@
 import React, { Component } from 'react';
+import Cart from './Cart'
+import './ProductDetail.css'
+
+import data from '../data/products.json'
 
 class ProductDetail extends Component {
     constructor(props) {
         super(props)
+
+        this.findProductById = this.findProductById.bind(this)
     }
 
     render() {
         const {id} = this.props.match.params
-        return <div>
-                {id}
-            </div>
+        let product = this.findProductById(id);
+        return <main>
+                <div className='product-detail'>
+                    <div className='grid-cell'>
+                        <p>{product.name}</p>
+                        <img className='pdp-image' src={'../assets/' + product.image} />
+                    </div>
+                    <div className='grid-cell'>
+                        <p><b>{product.measurement}</b></p>
+                        <p><b>{product.price}</b></p>
+                        <p style={{"font-size": "14px"}}>{product.desc}</p>
+                        <button className='addToCart'>Add To Cart</button>
+                    </div>
+                </div>
+            </main>
+    }
+
+    findProductById(id) {
+        let products = data.products;
+
+        for(let i = 0; i < products.length; i++) {
+            let onlyImgName = products[i].image.substr(0, products[i].image.lastIndexOf("."));
+            if(onlyImgName === id) {
+                return products[i]
+            }
+        }
+
+        return null;
     }
 }
 

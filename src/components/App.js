@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import './App.css';
 
@@ -10,25 +11,24 @@ class App extends Component {
       opened: false
     }
 
-    this.toggleCart = this.toggleCart.bind(this)
   }
 
-  toggleCart() {
-    const { opened } = this.state;
-    this.setState({
-      opened: !opened,
-    });
-  }
 
   render() {
     const { opened } = this.state;
     return (
         <div className="App">
-          <div className="overlay" style={ opened? {display: 'block'} : {display: 'none'}}></div>
           <header>
               <span></span>
               <span>Mini Mart</span>
-              <button className="button" onClick={this.toggleCart}>Cart</button>
+              <span>
+                <Link to="/">
+                <button className="button">Browse</button>
+                </Link>
+                <Link to="/cart">
+                  <button className="button">Cart</button>
+                </Link>
+              </span>
           </header>
           {this.props.children}
         </div>

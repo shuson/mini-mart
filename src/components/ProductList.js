@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import Cart from './Cart'
 import './ProductList.css'
 import data from '../data/products.json'
 
@@ -13,6 +13,7 @@ class ProductList extends Component {
 
         this.onFilterChange = this.onFilterChange.bind(this)
         this.filterValidate = this.filterValidate.bind(this)
+        this.handleAddToCart = this.handleAddToCart.bind(this)
     }
 
     onFilterChange(e) {
@@ -64,6 +65,19 @@ class ProductList extends Component {
         return brandFlag && priceFlag
     }
 
+    handleAddToCart(e) {
+        let id = e.target.name;
+        let goods = JSON.parse(localStorage.getItem('miniCart')) || {};
+
+        if(goods && goods[id]) {
+            goods[id] += 1;
+        } else {
+            goods[id] = 1;
+        }
+
+        localStorage.setItem('miniCart', JSON.stringify(goods));
+    }
+
     render() {
         return <main>
             <nav>
@@ -82,9 +96,9 @@ class ProductList extends Component {
                         <Link to={"/product/" + productId} >
                             <img src={'./assets/' + product.image} />
                         </Link>
-                        <div>{product.name}</div>
-                        <div>{product.price}</div>
-                        <button className='addToCart'>Add To Cart</button>
+                        <p className='productName'>{product.name}</p>
+                        <p className='productPrice'>{product.price}</p>
+                        <button className='addToCart' name={productId} onClick={this.handleAddToCart}>Add To Cart</button>
                     </section>
                 })}
             </article>
