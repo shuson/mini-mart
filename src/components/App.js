@@ -8,24 +8,24 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      opened: false
+      total: 0
     }
 
   }
 
 
   render() {
-    const { opened } = this.state;
+    const { total } = this.state;
     return (
         <div className="App">
           <header>
               <span></span>
               <span>Mini Mart</span>
               <span>
-                <Link to="/">
+                <Link to="/minimart/">
                 <button className="button">Browse</button>
                 </Link>
-                <Link to="/cart">
+                <Link to="/minimart/cart">
                   <button className="button">Cart</button>
                 </Link>
               </span>

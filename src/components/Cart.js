@@ -75,11 +75,15 @@ class Cart extends Component {
         })
     }
 
+    handleCheckout() {
+        alert("TO DO checkout");
+    }
+
     render() {
         let goods = JSON.parse(localStorage.getItem('miniCart'));
         if(!goods) return <main><article /></main>
 
-        let total = this.state.total;
+        let total = 0;
 
         let productList = []
         for(let productId in goods) {
@@ -88,11 +92,11 @@ class Cart extends Component {
             
             productList.push(<section key={productId}>
                 <br />
-                <Link to={"/product/" + productId} >
-                    <img src={'../assets/' + product.image} />
+                <Link to={"/minimart/products/" + productId} >
+                    <img src={'/minimart/assets/' + product.image} />
                 </Link>
                 <p className='productName'>{product.name}</p>
-                <p className='productPrice'>{product.price}</p>
+                <p className='productPrice'>${product.price}</p>
                 <div><button name={productId} className='smallButton' onClick={this.reduce}>-</button> <span className="thinBorder">{goods[productId]}</span> <button name={productId} className='smallButton' onClick={this.add}>+</button></div>
                 <button name={productId} className='removeItem' onClick={this.remove}>Remove</button>
             </section>
@@ -106,8 +110,8 @@ class Cart extends Component {
                 <div className="summary">
                     <span></span>
                     <span></span>
-                    <p>Total: {total} SGD</p>
-                    <button className="checkout">checkout</button>
+                    <p>Total: ${total} SGD</p>
+                    <button className="checkout" onClick={this.handleCheckout}>checkout</button>
                 </div>
         </main>
     }

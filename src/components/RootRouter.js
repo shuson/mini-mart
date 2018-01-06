@@ -15,9 +15,9 @@ const RootRouter = (props) => {
         <Router>
             <App>
                 <Switch>
-                    <Route exact path="/" component={ProductList} />
-                    <Route path="/product/:id" component={ProductDetail} />
-                    <Route path="/cart" component={Cart} />
+                    <Route exact path="/minimart" component={ProductList} />
+                    <Route path="/minimart/products/:id" component={ProductDetail} />
+                    <Route exact path="/minimart/cart" component={Cart} />
                     <Route path="*" component={ProductList} />
                 </Switch>
             </App>

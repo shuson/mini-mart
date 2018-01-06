@@ -23,4 +23,21 @@
         height: 70%;
         margin: 5px;
         cursor: pointer;
+        position: relative;
+    }
+
+    .badge{
+        content:"100";
+        position: absolute;
+        background: rgba(0,0,255,1);
+        height:2rem;
+        width:2rem;
+        text-align: center;
+        line-height: 2rem;;
+        font-size: 1rem;
+        border-radius: 50%;
+        color:white;
+        border:1px solid blue;
+        margin-top: -0.5em;
+        margin-left: -1.5em;
     }

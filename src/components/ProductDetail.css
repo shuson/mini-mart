@@ -45,3 +45,7 @@ main {
     cursor: pointer;
     align-self: flex-end;
 }
+
+.desc {
+    font-size: 14px;
+}

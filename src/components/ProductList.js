@@ -93,11 +93,11 @@ class ProductList extends Component {
                     let productId = product.image.substr(0, lastDotIndex);
                     return <section key={index}>
                         <br />
-                        <Link to={"/product/" + productId} >
-                            <img src={'./assets/' + product.image} />
+                        <Link to={"/minimart/products/" + productId} >
+                            <img src={'/minimart/assets/' + product.image} />
                         </Link>
                         <p className='productName'>{product.name}</p>
-                        <p className='productPrice'>{product.price}</p>
+                        <p className='productPrice'>${product.price}</p>
                         <button className='addToCart' name={productId} onClick={this.handleAddToCart}>Add To Cart</button>
                     </section>
                 })}
